@@ -1,0 +1,16 @@
+import requests
+from bs4 import BeautifulSoup
+
+url = 'https://www.python.org/'
+response = requests.get(url)
+soup = BeautifulSoup(response.content, 'lxml')
+images = soup.find_all('img')
+items = soup.find_all('div', class_='psf-widget')
+
+src = images[0].get("src")
+if src:
+    print(src)
+
+value = items[0].getText().strip()
+if value:
+    print(value)
